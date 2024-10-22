@@ -1,4 +1,4 @@
-Kalkulator - Aplikacja Desktopowa
+Kalkulator - Aplikacja Webowa
 
 Cel
 Aplikacja została stworzona, aby umożliwić szybkie i proste wykonywanie podstawowych obliczeń, takich jak dodawanie, odejmowanie, mnożenie i dzielenie. Jest to narzędzie, które może być pomocne w szkole, na lekcjach matematyki czy podczas codziennych zadań.
