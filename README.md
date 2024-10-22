@@ -10,4 +10,4 @@ Interakcja z użytkownikiem
 Użytkownik obsługuje kalkulator za pomocą myszki, klikając na przyciski z liczbami i operacjami. Aplikacja jest intuicyjna, więc nie wymaga specjalnych umiejętności – każdy może ją szybko zrozumieć i używać.
 
 Wersja
-Obecna wersja: 0.00 Alpha
+Obecna wersja: 0.2
