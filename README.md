@@ -9,5 +9,7 @@ Kalkulator działa w prosty sposób – wpisujesz liczby, wybierasz operację (n
 Interakcja z użytkownikiem
 Użytkownik obsługuje kalkulator za pomocą myszki, klikając na przyciski z liczbami i operacjami. Aplikacja jest intuicyjna, więc nie wymaga specjalnych umiejętności – każdy może ją szybko zrozumieć i używać.
 
+Dodany został kalkulator bitowy
+
 Wersja
-Obecna wersja: 0.6
+Obecna wersja: 1.0
