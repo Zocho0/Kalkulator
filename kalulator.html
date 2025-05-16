@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kalkulator</title>
+    <title>Kalkulator</title>
     <style>
+        /* Stylowanie kalkulatora */
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -13,16 +14,18 @@
             height: 100vh;
             background-color: hsl(0, 0%, 69%);
             margin: 0;
+            animation: backgroundAnimation 10s infinite alternate;
         }
-    
+
         #calculator {
             background-color: hsl(0, 0%, 35%);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px hsla(0, 0%, 14%, 0.3);
             width: 250px;
+            animation: calculatorBounce 1s ease-out;
         }
-    
+
         #display {
             width: 100%;
             height: 50px;
@@ -34,16 +37,16 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 15px;
-            box-sizing: border-box; 
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-    
         #keys {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 10px;
         }
-    
+
         button {
             background-color: hsl(0, 0%, 20%);
             color: white;
@@ -54,65 +57,163 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        button:hover{
+
+        button:hover {
             background-color: hsl(0, 0%, 15%);
         }
-        button:active{
+
+        button:active {
             background-color: hsl(0, 0%, 2%);
         }
-        .operator{
+
+        .operator {
             background-color: hsl(39, 100%, 50%);
         }
-        .operator:hover{
+
+        .operator:hover {
             background-color: hsl(39, 84%, 45%);
         }
-        .operator:active{
+
+        .operator:active {
             background-color: rgb(147, 111, 46);
         }
-    
-        #title{
-            text-align: center;
+
+        #kal_bit {
+            display: none;
+            background-color: hsl(0, 0%, 35%);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px hsla(0, 0%, 14%, 0.3);
+            width: 250px;
         }
-        
+
+        #opcje {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 10px;
+            width: 250px;
+            height: 100px;
+        }
+
+        .kalkulatory {
+            background-color: hsl(0, 0%, 35%);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .kalkulatory:hover {
+            background-color: hsl(0, 0%, 30%);
+        }
+
+        .kalkulatory h1 {
+            font-size: 1.2rem;
+            color: white;
+            margin: 0;
+        }
+
+        #opcje h1 {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-color: hsl(0, 0%, 69%);
+            }
+            50% {
+                background-color: hsl(180, 100%, 70%);
+            }
+            100% {
+                background-color: hsl(0, 0%, 69%);
+            }
+        }
+
+        @keyframes calculatorBounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
-    
-    
 </head>
 <body>
-    
-    
-    <div id="calculator">
-            <h1 id="title">kalkulator</h1>
-            
 
+    <div id="opcje">
+        <div id="kalkulator-bitowy" class="kalkulatory" onclick="kal_bit()">
+            <h1> Kalkulator binarny </h1>
+        </div>
+
+        <div id="kalkulator_zwykły" class="kalkulatory" onclick="kalk()"> 
+            <h1> Kalkulator zwykły </h1>
+        </div>
+    </div>
+
+    <div id="calculator">
+        <h1 id="title">Kalkulator</h1>
         <input id="display" readonly>
+
         <div id="keys">
             <button onclick="calbutton('+')" class="operator">+</button>
             <button onclick="calbutton('7')">7</button>
             <button onclick="calbutton('8')">8</button>
             <button onclick="calbutton('9')">9</button>
-            <button onclick="calbutton('-')"class="operator">-</button>
+            <button onclick="calbutton('-')" class="operator">-</button>
             <button onclick="calbutton('4')">4</button>
             <button onclick="calbutton('5')">5</button>
             <button onclick="calbutton('6')">6</button>
-            <button onclick="calbutton('*')"class="operator">*</button>
+            <button onclick="calbutton('*')" class="operator">*</button>
             <button onclick="calbutton('1')">1</button>
             <button onclick="calbutton('2')">2</button>
             <button onclick="calbutton('3')">3</button>
-            <button onclick="calbutton('/')"class="operator">/</button>
+            <button onclick="calbutton('/')" class="operator">/</button>
             <button onclick="calbutton('.')">.</button>
             <button onclick="calbutton('0')">0</button>
             <button onclick="equal()" class="operator">=</button>
             <button onclick="clearD()" class="operator">C</button>
         </div>
     </div>
+
+    <div id="kal_bit">
+        <h1>Kalkulator binarny</h1>
+        <input type="text" id="bitDisplay" >
+        <br>
+        <button class="bit-btn" onclick="bitbutton('1')">1</button>
+        <button class="bit-btn" onclick="bitbutton('0')">0</button>
+        <button class="bit-btn operator" onclick="clearBitDisplay()">C</button>
+        <br>
+        <button class="bit-btn operator" onclick="naDziesietny()">DEC</button>
+        <button class="bit-btn operator" onclick="naBinarny()">BIN</button>
+    </div>
+
     <script>
+        function kal_bit() {
+            document.getElementById("calculator").style.display = "none"; 
+            document.getElementById("kal_bit").style.display = "block"; 
+        }
+
+        function kalk() {
+            document.getElementById("calculator").style.display = "block"; 
+            document.getElementById("kal_bit").style.display = "none"; 
+        }
+
         const display = document.getElementById("display");
-        function calbutton(input){
+
+        function calbutton(input) {
             display.value += input;
         }
 
-        function clearD(){
+        function clearD() {
             display.value = "";
         }
 
@@ -120,12 +221,50 @@
             try {
                 display.value = eval(display.value);
             } catch (error) {
-                    display.value = "Error";
-                }
+                display.value = "Błąd";
+            }
         }
 
+        function bitbutton(bit) {
+            document.getElementById("bitDisplay").value += bit;
+        }
 
+        function clearBitDisplay() {
+            document.getElementById("bitDisplay").value = "";
+        }
 
+        function naDziesietny() {
+            let binarna = document.getElementById("bitDisplay").value;
+        
+            if (czyLiczbaBinarny(binarna)) {
+                document.getElementById("bitDisplay").value = parseInt(binarna, 2);
+            } else {
+                document.getElementById("bitDisplay").value = "Błąd";
+            }
+        }
+
+        function naBinarny() {
+            let dziesietna = document.getElementById("bitDisplay").value;
+        
+            if (czyLiczbaDziesietna(dziesietna)) {
+                document.getElementById("bitDisplay").value = Number(dziesietna).toString(2);
+            } else {
+                document.getElementById("bitDisplay").value = "Błąd";
+            }
+        }
+
+        function czyLiczbaBinarny(tekst) {
+            for (let znak of tekst) {
+                if (znak !== '0' && znak !== '1') {
+                    return false;
+                }
+            }
+            return tekst.length > 0;
+        }
+
+        function czyLiczbaDziesietna(tekst) {
+            return !isNaN(tekst) && tekst.trim() !== "";
+        }
     </script>
 </body>
 </html>
